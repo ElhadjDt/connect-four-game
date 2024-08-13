@@ -43,7 +43,7 @@ bool gagner(char tableau[][7], int ligne, int codeAscii) {
 	}
 	return false;
 }
-bool pleine(int tableau[], int taille) {                 	//to do a reverifier
+bool pleine(int tableau[], int taille) {                 	
 	int pions = 0;
 	for (int i = 0; i < taille; i++) {
 		pions += tableau[i];
@@ -202,15 +202,11 @@ short choisirMeilleurCoup(char tableau[][7]) {
 		mt19937 rng(dev());
 		uniform_int_distribution<std::mt19937::result_type> dist6(0, 6);
 		n = dist6(rng);
-		//srand(time(0));    				//initialisation de srand() avec l'heure courante 
-		//n = rand() % 7;  				//generation de nombre aleatoire 
-		//cout << "Random" << endl;
 		return n;
 	}
 }
 
-//fonction pour enregistrer le score dans un fichier on ne la pas utiliser mais ca pourait etre 
-//important dans certaines situations
+//fonction pour enregistrer le score dans un fichier 
 void enregistrerScore(const string& nomFichier, int scoreJoueur, int scoreOrdinateur) {   
     ofstream fichier(nomFichier, ios::app);
     fichier << "Joueur: " << scoreJoueur << ", Ordinateur: " << scoreOrdinateur << endl;
@@ -313,14 +309,14 @@ int main()
 					while(true){
 
 						while(true){
-							cout << "Numero de colonne : ";
+							cout << "Column number ";
 							cin >> n;
 							if (n < 1 || n>7) {
-								cout << "Entree Invalide, vos options sont de 1 a 7 " << endl;
+								cout << "Invalid entry, your options are from 1 to 7 " << endl;
 								continue;
 							}
 							else if (T[n - 1] > 5) {
-								cout << "Colonne pleine " << endl;
+								cout << "Column ful" << endl;
 								continue;
 							}
 							break;
@@ -375,39 +371,39 @@ int main()
 				if (c1 == 256){									// Les codes de retour sont multiplie par 256
 				
 				        ++scoreOrdinateur;                      // Incrementation du score de l'ordi
-					cout<<"Vous avez perdu"<<endl;	                           
+					cout<<"You lost"<<endl;	                           
 				}
 				else if(c1 == 512){								// Code 2 * 1 0000 0000 = 512 en decimal
 				
 				        ++scoreJoueur;                          // incrementer le score du joueur
-					cout<<"Vous avez gagne"<<endl; 
+					cout<<"You won"<<endl; 
 					
 				}
 				else{
-					cout<<"Egalite"<<endl;                                    
+					cout<<"Draw"<<endl;                                    
 				}
 				break;   //Fin pere
 			}
 	}  
-        cout << endl <<"Scores - Joueur: " << scoreJoueur << ", Ordinateur: " << scoreOrdinateur << endl;  //afficher le score du jeu 
+        cout << endl <<"Scores - Player: " << scoreJoueur << ", Computer: " << scoreOrdinateur << endl;  //afficher le score du jeu 
         
-        cout << "Voulez-vous jouer à nouveau ? (O/N) : ";                                           //incitation de faire un choix pour rejouer ou pas 
+        cout << "Would you like to play again? (Y/N): ";                                           //incitation de faire un choix pour rejouer ou pas 
         while(true){                                                                                //boucle qui continue tant que le choix est incorrecte
            cin >> rejouer;
            rejouer = toupper(rejouer);                                                               //convertier le caractere en majuscul
            
-           if(rejouer=='O' or rejouer=='N') break; 
-           cout<<"choix incorrecte! (O/N) : ";                                       
+           if(rejouer=='Y' or rejouer=='N') break; 
+           cout<<"choix incorrecte! (Y/N) : ";                                       
            continue;                     
         }
         
-		if (rejouer == 'O');// system("clear");                                                      //si le joueur veux rejouer effacer tout sur le terminal
+		if (rejouer == 'Y');// system("clear");                                                      //si le joueur veux rejouer effacer tout sur le terminal
         
         //enregistrerScore("scores.txt", scoreJoueur, scoreOrdinateur);
         
-    } while (rejouer == 'O');
+    } while (rejouer == 'Y');
 
-   cout << endl <<"Merci d'avoir joué ! Scores finaux - Joueur: " << scoreJoueur << ", Ordinateur: " << scoreOrdinateur << endl << endl; //message de fin de jeu
+   cout << endl <<"Thank you for playing! Final scores - Player:" << scoreJoueur << ", Computer: " << scoreOrdinateur << endl << endl; //message de fin de jeu
 
     return 0;
 }
