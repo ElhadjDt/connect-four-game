@@ -397,7 +397,8 @@ int main()
            continue;                     
         }
         
-		if (rejouer == 'Y');// system("clear");                                                      //si le joueur veux rejouer effacer tout sur le terminal
+		if (rejouer == 'Y');
+	        system("clear");                                                      //si le joueur veux rejouer effacer tout sur le terminal
         
         //enregistrerScore("scores.txt", scoreJoueur, scoreOrdinateur);
         
